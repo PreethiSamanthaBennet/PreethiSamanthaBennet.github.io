@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header{
+    width: 100%;
+    height: 100vh;
+    background: url(http://www.jpl.nasa.gov/edu/images/events/whatsup/meteor_shower.gif);
+    background-position: center;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    transition: background 1s;
+}
+
+nav .logo{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+}
+
+nav .logo img{
+    width: 60px;
+    margin-right: 40px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+    color: black;
+}
+
+nav:hover{
+    background-color: #000;
+    color: #000;
+}
+
+nav hover .logo{
+    color: #fff;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+}
+
+nav ul li a:hover{
+    text-decoration: none;
+    color: rgb(215, 171, 128);
+    font-weight: 400;
+}
+
+nav:hover{
+    background: #0a0e2b;
+    color: rgb(215, 171, 128);
+}
+
+nav:hover .logo{
+    color:rgb(215, 171, 128);
+}
+
+.content{
+    margin-top: 9%;
+    margin-left: 9%;
+    color: #fff;
+}
+
+.content h1{
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 600;
+}
+
+.content p{
+    max-width: 500px;
+    line-height: 28px;
+    color: #fff;
+    opacity: 0;
+}
+
+.links{
+    margin-top: 30px;
+    opacity: 0;
+}
+
+.links a{
+    color:#fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button{
+    border: 2px solid #fff;
+    padding: 10px 35px;
+    border-radius: 30px;
+    margin-right: 15px;
+}
+
+.slide-left{
+    animation: slideleft 1s linear forwards;
+}
+
+@keyframes slideleft {
+ 
+    0%{
+        transform: translate(100px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translate(0px);
+        opacity: 1;
+    }
+}
+
+p.slide-left{
+    animation-delay: 1s;
+}
+
+.links.slide-left{
+    animation-delay: 2s;
+}
