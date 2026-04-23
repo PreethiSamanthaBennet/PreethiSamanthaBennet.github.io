@@ -10,15 +10,17 @@
 <body>
 
 <div class="container">
-
+    
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    
     <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <!-- <aside class="sidebar">
         <div class="top">
             <h2>PREETHI SAMANTHA BENNET</h2>
-
-            <!-- <div class="theme-toggle" id="themeToggle">
-                <div class="knob">🌙</div>
-            </div> -->
         </div>
 
         <ul>
@@ -33,6 +35,25 @@
                 <div class="knob">🌙</div>
         </div>
 
+    </aside> -->
+
+    <aside class="sidebar">
+        <div class="top-content">
+            <h2>PREETHI SAMANTHA BENNET</h2>
+            <ul>
+                <li onclick="showSection('about')">[ABOUT]</li>
+                <li onclick="showSection('publications')">[PUBLICATIONS]</li>
+                <li onclick="showSection('internships')">[INTERNSHIPS]</li>
+                <li onclick="showSection('education')">[EDUCATION]</li>
+                <li onclick="showSection('contact')">[CONTACT]</li>
+            </ul>
+        </div>
+
+        <div class="bottom-content">
+            <div class="theme-toggle" id="themeToggle">
+                <div class="knob">🌙</div>
+            </div>
+        </div>
     </aside>
 
     <!-- MAIN -->
