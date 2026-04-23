@@ -113,6 +113,16 @@ section { display: none; }
 section.active { display: block; }
 
 /* CARDS */
+/* .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    position: relative;
+} */
+
+/* CARDS - FIXED FOR WRAPPING */
 .card {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -120,6 +130,14 @@ section.active { display: block; }
     margin: 1rem 0;
     border-radius: 12px;
     position: relative;
+
+    /* Text Wrapping Logic */
+    white-space: pre-wrap;       /* Respects line breaks but wraps at the edge */
+    overflow-wrap: break-word;   /* Breaks long URLs or strings */
+    word-wrap: break-word;
+    word-break: break-word;      /* Force break if necessary */
+    max-width: 100%;             /* Never wider than the screen */
+    box-sizing: border-box;      /* Includes padding in width calculation */
 }
 
 /* HOVER */
@@ -428,12 +446,21 @@ body.dark .menu-toggle {
     }
 
     /* 3. Main Content Fix */
-    .main {
+    /* .main {
         margin-left: 0 !important;
         padding: 1rem;
-        padding-top: 80px; /* Space so hamburger doesn't cover content */
-    }
+        padding-top: 80px; 
+    } */
 
+    .main {
+    margin-left: 0 !important;
+    padding: 1rem;
+    padding-top: 80px; 
+    width: 100%;            /* Ensure it stays within viewport */
+    box-sizing: border-box; /* Include padding in width */
+    overflow-x: hidden;     /* Prevent horizontal scroll */
+}
+    
     /* 4. Hamburger Animation to 'X' */
     .menu-toggle.open .bar:nth-child(1) {
         transform: translateY(6px) rotate(45deg);
