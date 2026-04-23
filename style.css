@@ -488,7 +488,7 @@ body.dark .menu-toggle {
     .card {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: left;
         align-items: center; /* Centers button inside card on mobile */
         padding-bottom: 1.5rem;
     }
