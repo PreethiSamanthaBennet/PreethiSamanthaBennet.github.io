@@ -137,3 +137,24 @@ function animate() {
 }
 
 animate();
+
+
+
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.querySelector('.sidebar');
+
+// Open/Close sidebar
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    menuToggle.classList.toggle('open');
+});
+
+// Close sidebar when a link is clicked
+function showSection(id) {
+    // ... your existing showSection logic ...
+    
+    // Add these lines:
+    sidebar.classList.remove('open');
+    menuToggle.classList.remove('open');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
