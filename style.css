@@ -488,9 +488,15 @@ body.dark .menu-toggle {
     .card {
         display: flex;
         flex-direction: column;
-        justify-content: left;
-        align-items: center; /* Centers button inside card on mobile */
+        align-items: flex-start; /* Aligns text to the left */
+        text-align: left;        /* Ensures text block itself is left-aligned */
         padding-bottom: 1.5rem;
+    }
+    
+    /* Specifically target the button to center it, without affecting the text */
+    .card .read-paper-btn {
+        align-self: center;      /* Only the button moves to the center */
+        margin-top: 1.5rem;
     }
 
     .tile-grid {
