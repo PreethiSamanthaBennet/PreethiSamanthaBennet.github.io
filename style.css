@@ -1,0 +1,360 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: monospace;
+}
+
+/* THEME */
+/* :root {
+    --bg: #f8fafc;
+    --text: #0f172a;
+    --panel: #ffffff;
+    --border: #e2e8f0;
+    --accent: #3b82f6;
+} */
+
+:root {
+    --bg: #f1f5f9;     
+    --text: #1e293b;   
+    --panel: #ffffff;  
+    --border: #cbd5e1; 
+    --accent: #3b82f6; 
+} 
+
+body.dark {
+    --bg: #0a0f1c;
+    --text: #00ff9f;
+    --panel: #050814;
+    --border: #1e293b;
+    --accent: #3b82f6;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   LAYOUT FIX (SIDEBAR PERSISTENT)
+========================= */
+
+.container {
+    display: block;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    padding: 1.5rem;
+    background: var(--panel); 
+    border-right: 1px solid var(--border);
+
+    /* Set up flex, but don't use space-between */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+/* This targets the container holding your toggle */
+.theme-toggle {
+    margin-top: auto; /* This is the magic: it sucks up all available space above it */
+    margin-bottom: 1rem; /* Keeps it slightly off the very bottom edge */
+    
+    /* Keep your existing toggle styles below */
+    width: 56px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+}
+/* We need to wrap your heading and list so they stay together at the top */
+.sidebar .top-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Style the bottom container for the toggle */
+.sidebar .bottom-content {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border); /* Optional: adds a nice separator */
+}
+
+/* Optional: Add a very subtle shadow in light mode for depth */
+body:not(.dark) .sidebar {
+    box-shadow: 4px 0 10px rgba(0,0,0,0.02);
+}
+
+
+/* MAIN SCROLL AREA */
+.main {
+    margin-left: 260px; /* IMPORTANT: prevents overlap */
+    padding: 2rem;
+
+    min-height: 100vh;
+}
+
+
+
+
+/* SECTIONS */
+section { display: none; }
+section.active { display: block; }
+
+/* CARDS */
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    position: relative;
+}
+
+/* HOVER */
+.card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    transition: 0.2s;
+}
+
+/* TEXT COLORS */
+.first-line {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.other-line {
+    color: var(--accent);
+}
+
+/* CURSOR */
+.cursor {
+    display: inline-block;
+    width: 8px;
+    background: var(--accent);
+    margin-left: 2px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* TOGGLE */
+.theme-toggle {
+    width: 56px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.theme-toggle .knob {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+/* CANVAS */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.links-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 18px;
+}
+
+.links-title {
+    font-family: monospace;
+    font-size: 16px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    /* text-transform: uppercase; */
+    opacity: 1;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px;
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+    background: var(--panel);
+
+    text-decoration: none;
+    color: var(--text);
+
+    transition: all 0.2s ease;
+    min-height: 95px;
+}
+
+
+.tile img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 10px;
+    /* This complex filter turns black SVGs into your #3b82f6 Blue */
+    filter: invert(48%) sepia(89%) saturate(1838%) hue-rotate(201deg) brightness(101%) contrast(92%);
+    transition: all 0.3s ease;
+}
+
+.tile:hover img {
+    /* Make them pop even more on hover */
+    filter: brightness(1.2);
+    transform: scale(1.1);
+}
+
+.tile-text {
+    font-size: 16px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.tile:hover {
+    transform: translateY(-2px);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+body.dark .tile {
+    background: #05070f;
+    border: 1px solid #1e293b;
+}
+
+/* LIGHT MODE HOVER: Stays Blue */
+.tile:hover img {
+    filter: invert(48%) sepia(89%) saturate(1838%) hue-rotate(201deg) brightness(101%) contrast(92%);
+}
+
+/* DARK MODE HOVER: Turns Green (#00ff9f) */
+body.dark .tile:hover img {
+    /* This filter converts the icon to your specific green accent */
+    filter: invert(48%) sepia(89%) saturate(1838%) hue-rotate(201deg) brightness(101%) contrast(92%);
+    opacity: 1;
+}
+
+/* Ensure the text also turns green on hover in dark mode */
+body.dark .tile:hover .tile-text {
+    color: #00ff9f;
+    transition: color 0.3s ease;
+}
+
+/* 1. Remove bullets and padding from the list container */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem; /* Adds space below the "PREETHI" header */
+}
+
+/* 2. Increase line spacing and set base style */
+.sidebar li {
+    padding: 12px 8px; /* Vertical and horizontal spacing */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--text);
+    opacity: 0.8;
+}
+
+/* 3. Hover effect for Light Mode (Blue) */
+.sidebar li:hover {
+    color: var(--accent); /* Uses your #3b82f6 blue */
+    opacity: 1;
+    padding-left: 15px; /* Slight "nudge" effect on hover */
+}
+
+/* 4. Hover effect for Dark Mode (Green) */
+body.dark .sidebar li:hover {
+    color: var(--accent); /* Matches your neural green text */
+    text-shadow: 0 0 8px rgba(0, 255, 159, 0.5); /* Subtle glow */
+}
+
+
+
+
+
+/* 1. Ensure the card can contain the absolute button */
+.card {
+    position: relative; /* This is the anchor for the button */
+    padding-bottom: 2rem; /* Adds extra space at the bottom so text doesn't overlap button */
+}
+
+/* 2. Position the button in the bottom right */
+.read-paper-btn {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: fit-content; /* Only as wide as the text */
+    padding: 8px 16px;  /* Traditional button proportions */
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    
+    text-decoration: none;
+    color: var(--text);
+    font-family: monospace;
+    font-size: 13px; /* Slightly smaller for a "mini" look */
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* 3. Hover States */
+.read-paper-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+body.dark .read-paper-btn {
+    background: #05070f;
+    border-color: #1e293b;
+}
+
+body.dark .read-paper-btn:hover {
+    border-color: #00ff9f;
+    color: #00ff9f;
+}
