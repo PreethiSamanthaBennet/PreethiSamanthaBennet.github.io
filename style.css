@@ -321,7 +321,7 @@ body.dark .sidebar li:hover {
 /* 2. Position the button in the bottom right */
 .read-paper-btn {
     position: absolute;
-    bottom: 3rem;
+    bottom: 1rem;
     right: 1.5rem;
     
     display: flex;
