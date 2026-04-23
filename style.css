@@ -378,33 +378,89 @@ body.dark .read-paper-btn:hover {
 
 
 
-
 /* =========================
-   PSEUDO-DESKTOP MOBILE MODE
-========================= */
+   HAMBURGER & MOBILE MENU
+   ========================= */
+
+/* Desktop: Hide the menu button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1000;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
 
 @media (max-width: 768px) {
-
-    /* Slight zoom-in so it's readable */
-    body {
-        transform: scale(1.15);
-        transform-origin: top left;
-        width: 1200px; /* match viewport */
+    /* 1. Show hamburger button */
+    .menu-toggle {
+        display: flex;
     }
 
-    /* Prevent weird overflow issues */
-    html, body {
-        overflow-x: auto;
+    /* 2. Transform Sidebar into slide-out drawer */
+    .sidebar {
+        left: -260px; /* Hide off-screen */
+        transition: left 0.3s ease-in-out;
+        width: 250px;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
     }
 
-    /* Make sidebar slightly more touch-friendly */
-    .sidebar li {
-        padding: 14px 0;
-        font-size: 16px;
+    /* 3. Sidebar 'Open' State */
+    .sidebar.open {
+        left: 0;
     }
 
-    /* Slightly larger cards for readability */
-    .card {
-        padding: 1.8rem;
+    /* 4. Reset Main Content Margin */
+    .main {
+        margin-left: 0 !important;
+        padding: 1rem;
+        padding-top: 60px; /* Space for the button */
+    }
+
+    /* 5. Mobile Grid Adjustments */
+    .tile-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 6. Hamburger animation to 'X' */
+    .menu-toggle.open .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .menu-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.open .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* 7. Fix absolute buttons for mobile */
+    .read-paper-btn {
+        position: static;
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tile-grid {
+        grid-template-columns: 1fr;
     }
 }
