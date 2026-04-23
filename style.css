@@ -358,3 +358,52 @@ body.dark .read-paper-btn:hover {
     border-color: #00ff9f;
     color: #00ff9f;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   PSEUDO-DESKTOP MOBILE MODE
+========================= */
+
+@media (max-width: 768px) {
+
+    /* Slight zoom-in so it's readable */
+    body {
+        transform: scale(1.15);
+        transform-origin: top left;
+        width: 1200px; /* match viewport */
+    }
+
+    /* Prevent weird overflow issues */
+    html, body {
+        overflow-x: auto;
+    }
+
+    /* Make sidebar slightly more touch-friendly */
+    .sidebar li {
+        padding: 14px 0;
+        font-size: 16px;
+    }
+
+    /* Slightly larger cards for readability */
+    .card {
+        padding: 1.8rem;
+    }
+}
