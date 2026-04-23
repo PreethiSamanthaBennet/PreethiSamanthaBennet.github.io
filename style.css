@@ -449,12 +449,37 @@ body.dark .read-paper-btn:hover {
     }
 
     /* 7. Fix absolute buttons for mobile */
-    .read-paper-btn {
+    /* .read-paper-btn {
         position: static;
         display: block;
         width: 100%;
         text-align: center;
         margin-top: 1rem;
+    } */
+
+    .read-paper-btn {
+        /* 1. Reset positioning */
+        position: static; 
+        
+        /* 2. Fix the width */
+        display: inline-flex; /* Shrinks the button to fit the text */
+        width: auto;         /* Prevents it from stretching to 100% */
+        min-width: 120px;    /* Keeps a nice minimum size for tapping */
+        
+        /* 3. Spacing */
+        margin-top: 1.5rem;
+        padding: 10px 20px;
+        
+        /* 4. Alignment */
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Centers the button within the card if desired */
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Keeps button on the left. Change to 'center' to center it */
     }
 }
 
